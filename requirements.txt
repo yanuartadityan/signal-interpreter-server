@@ -3,3 +3,5 @@ pylint==2.6.0
 pipenv==2020.11.4
 wheel==0.35.1
 setuptools==50.3.2
+requests
+pytest
