@@ -1,21 +1,19 @@
 # routes.py
 from flask import Flask, request
+from signal_interpreter_server.src_server.json_parser import SignalParser
 
 
 signal_interpreter_app = Flask(__name__)
 
 @signal_interpreter_app.route("/", methods=["POST"])
-def hello():
-    return {
-        "response": 200,
-        "message": "Signal is received"
-    }
-
-@signal_interpreter_app.route("/member/", methods=["POST"])
-def ricardo_introduction():
-    return "This is member's page"
-
-@signal_interpreter_app.route("/post-data/", methods=["POST"])
-def handling_signal():
+def interpret_signal():
+    # get data
     data = request.get_json()
-    return data
+
+    # create a parser, and use it to get signal value
+    ps = SignalParser(signal_interpreter_app.config.get('signal_db'))
+    signal_name = ps.get_signal_by_id(data["signal"])
+
+    return {
+        "title": signal_name
+    }
