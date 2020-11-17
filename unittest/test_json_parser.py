@@ -1,7 +1,7 @@
 # test_json_parser.py
 import json
 from unittest import TestCase
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import patch, mock_open
 from signal_interpreter_server.src_server.json_parser import SignalParser
 
 
