@@ -1,10 +1,11 @@
 # test_routes.py
 from signal_interpreter_server.src_server.routes import signal_interpreter_app
+from signal_interpreter_server.src_server.json_parser import SignalParser
 
 
 def test_interpret_signal():
     signal_interpreter_app.testing = True
-    signal_interpreter_app.config['signal_db'] = "signal_interpreter_server/signal_database.json"
+    signal_interpreter_app.config['signal_db'] = SignalParser("signal_interpreter_server/signal_database.json")
 
     # correct pass
     with signal_interpreter_app.test_client() as client:

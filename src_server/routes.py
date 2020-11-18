@@ -11,7 +11,7 @@ def interpret_signal():
     data = request.get_json()
 
     # create a parser, and use it to get signal value
-    ps = SignalParser(signal_interpreter_app.config.get('signal_db'))
+    ps = signal_interpreter_app.config.get('signal_db')
     signal_name = ps.get_signal_by_id(data["signal"])
 
     return {
