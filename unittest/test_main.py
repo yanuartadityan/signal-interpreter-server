@@ -8,9 +8,9 @@ from unittest.mock import patch
 from signal_interpreter_server.src_server.main import init_app, main
 
 
-class MainTest(TestCase):
+class MainTestServer(TestCase):
     """
-    MainTest
+    MainTestServer
     """
 
     def setup_parser(self):
