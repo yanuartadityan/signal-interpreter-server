@@ -1,4 +1,6 @@
+"""
 # test_json_parser.py
+"""
 import json
 from unittest import TestCase
 from unittest.mock import patch, mock_open
@@ -6,8 +8,15 @@ from signal_interpreter_server.src_server.json_parser import SignalParser
 
 
 class TestParser(TestCase):
+    """
+    TestParser class
+    """
+    @staticmethod
     @patch('signal_interpreter_server.src_server.json_parser.SignalParser.load_file')
-    def test_constructor(self, mock_signals):
+    def test_constructor(mock_signals):
+        """
+        test_constructor
+        """
         mock_signals.return_value = {
             "services": [
                 {
@@ -23,14 +32,21 @@ class TestParser(TestCase):
         parser_obj = SignalParser("whatever")
         assert parser_obj.signals == mock_signals.return_value
 
+    @staticmethod
     @patch('signal_interpreter_server.src_server.json_parser.SignalParser.get_signal_title')
-    def test_get_signal_by_id(self, mock_signal_title):
+    def test_get_signal_by_id(mock_signal_title):
+        """
+        test_get_signal_by_id
+        """
         db_path = "signal_interpreter_server/signal_database.json"
         mock_signal_title.return_value = "ECU Reset"
         parser_obj = SignalParser(db_path)
         assert parser_obj.get_signal_by_id("Whatever") == "ECU Reset"
 
     def test_load_file(self):
+        """
+        test_load_file
+        """
         # provide valid signal database
         valid_database = {
             "services": [
@@ -56,6 +72,9 @@ class TestParser(TestCase):
 
 
     def test_get_signal_title(self):
+        """
+        test_get_signal_title
+        """
         ok_signal_list = {
                 "services": [
                     {
