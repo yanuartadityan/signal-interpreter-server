@@ -2,8 +2,8 @@
 from argparse import ArgumentParser
 from unittest import TestCase
 from unittest.mock import patch
-from signal_interpreter_server.src_server.main import init_app, main
-
+# from signal_interpreter_server.src_server.main import init_app, main
+from src_server.main import init_app, main
 
 class MainTest(TestCase):
     def setup_parser(self):
