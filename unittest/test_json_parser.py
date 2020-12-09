@@ -70,7 +70,6 @@ class TestParser(TestCase):
             result = SignalParser.load_file("random_filename")
         self.assertEqual(valid_database, result)
 
-
     def test_get_signal_title(self):
         """
         test_get_signal_title

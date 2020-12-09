@@ -26,18 +26,14 @@ class MainTestServer(TestCase):
         """
         self.setup_parser()
 
-        parsed_short = self.parser.parse_args(['-f',
-                                            'signal_interpreter_server/signal_database.json'])
-        parsed_long = self.parser.parse_args(['--file_path',
-                                            'signal_interpreter_server/signal_database.json'])
+        parsed_short = self.parser.parse_args(['-f', 'signal_interpreter_server/signal_database.json'])
+        parsed_long = self.parser.parse_args(['--file_path', 'signal_interpreter_server/signal_database.json'])
 
         self.assertEqual(parsed_short.file_path, 'signal_interpreter_server/signal_database.json')
         self.assertEqual(parsed_long.file_path, 'signal_interpreter_server/signal_database.json')
 
     @staticmethod
-    @patch('sys.argv', ['test_main',
-                        '--file_path',
-                        'signal_interpreter_server/signal_database.json'])
+    @patch('sys.argv', ['test_main', '--file_path', 'signal_interpreter_server/signal_database.json'])
     def test_main():
         """
         test_main
@@ -48,10 +44,8 @@ class MainTestServer(TestCase):
             mock_run.assert_called_once()
 
     @staticmethod
-    @patch('signal_interpreter_server.src_server.main.__name__',
-            '__main__')
-    @patch('sys.argv', ['test_main', '--file_path',
-            'signal_interpreter_server/signal_database.json'])
+    @patch('signal_interpreter_server.src_server.main.__name__', '__main__')
+    @patch('sys.argv', ['test_main', '--file_path', 'signal_interpreter_server/signal_database.json'])
     def test_init():
         """
         test_init
