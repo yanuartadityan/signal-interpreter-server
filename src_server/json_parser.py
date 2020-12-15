@@ -2,6 +2,10 @@
 json_parser.py
 """
 import json
+import logging
+from signal_interpreter_server.src_server.exceptions import JsonParserError
+
+logger = logging.getLogger(__name__)
 
 
 class SignalParser:
@@ -12,7 +16,11 @@ class SignalParser:
         """
         __init__ (constructor)
         """
-        self.signals = SignalParser.load_file(filepath)
+        try:
+            self.signals = SignalParser.load_file(filepath)
+        except FileNotFoundError as err:
+            logger.exception("Could not find %s", filepath)
+            raise JsonParserError from err
 
     def get_signal_by_id(self, signal_id):
         """
@@ -51,4 +59,6 @@ class SignalParser:
                 if value is not None:
                     return value
 
+        #!TODO 2020/12/15: Raise exception instead
         return None
+        # raise JsonParserError("Identifier key is not found in the database")

@@ -1,6 +1,7 @@
 """
 test_routes.py
 """
+from unittest.mock import patch
 from signal_interpreter_server.src_server.routes import signal_interpreter_app
 from signal_interpreter_server.src_server.json_parser import SignalParser
 
@@ -31,3 +32,10 @@ def test_interpret_signal():
 
         assert response.get_json() == {"title": None}
         assert response.status_code == 200
+
+@patch('signal_interpreter_server.src_server.main.signal_interpreter_app.run')
+def test_interpret_signal_mock(mock_app):
+    """
+    test_interpret_signal_mock
+    """
+    
